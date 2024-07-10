@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuração do CORS
 app.use(cors({
-    origin: 'http://localhost:4000', // Permitir requisições do frontend na porta 4000
+    origin: 'https://full-stack-home-test-front-end.onrender.com', // Permitir requisições do frontend na porta 4000
     methods: 'GET,POST', // Métodos permitidos
     allowedHeaders: 'Content-Type', // Cabeçalhos permitidos
 }));
