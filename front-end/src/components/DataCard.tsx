@@ -6,14 +6,15 @@ interface DataCardProps {
 
 const DataCard: React.FC<DataCardProps> = ({ data }) => {
     return (
-        <div className="data-card">
+        <div className="card">
             {Object.entries(data).map(([key, value]) => (
-                <div key={key} className="data-card-item">
-                    <strong>{key}:</strong> {value}
-                </div>
+                <p key={key}>
+                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                </p>
             ))}
         </div>
     );
 };
 
 export default DataCard;
+

@@ -8,6 +8,7 @@ const App: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [data, setData] = useState<any[]>([]);
     const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState<'success' | 'error'>('success');
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
@@ -22,31 +23,36 @@ const App: React.FC = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/files', formData);
+            const response = await axios.post('https://full-stack-home-test.onrender.com/api/files', formData);
             setMessage(response.data.message);
+            setMessageType('success');
+            await handleSearch(); // Call handleSearch after successful upload
         } catch (error) {
             setMessage('Error uploading file');
+            setMessageType('error');
         }
     };
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/users', {
+            const response = await axios.get('https://full-stack-home-test.onrender.com/api/users', {
                 params: { q: searchQuery },
             });
             setData(response.data.data);
         } catch (error) {
             setMessage('Error fetching data');
+            setMessageType('error');
         }
     };
 
     return (
         <div className="App">
+            <img src="/logocsv.png" alt="Logo" className="logo" />
             <h1>CSV File Upload and Search</h1>
             <div className="top-bar">
                 <div className="file-upload">
                     <input type="file" accept=".csv" onChange={handleFileChange} />
-                    <button onClick={handleUpload}>Upload</button>
+                    <button onClick={handleUpload} data-testid="upload-button">Upload</button>
                 </div>
                 <div className="search-bar">
                     <input
@@ -54,14 +60,19 @@ const App: React.FC = () => {
                         placeholder="Search..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        data-testid="search-input"
                     />
                     <button onClick={handleSearch}>Search</button>
                 </div>
             </div>
-            {message && <p>{message}</p>}
+            {message && (
+                <div className={`notification ${messageType}`} data-testid="notification">
+                    {message}
+                </div>
+            )}
             <div className="data-container">
                 {data.map((item, index) => (
-                    <DataCard key={index} data={item} />
+                    <DataCard key={index} data={item} data-testid="info-card" />
                 ))}
             </div>
         </div>
