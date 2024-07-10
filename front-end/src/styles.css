@@ -1,0 +1,189 @@
+body {
+  background-color: #303030;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+  width: 90%;
+  max-width: 1200px; /* Limits the maximum width of the application */
+}
+
+/* Header styles */
+h1 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* Top bar styles */
+.top-bar {
+  display: flex;
+  flex-direction: column; /* Aligns items vertically on mobile */
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center; /* Centers items horizontally */
+}
+
+/* File upload and search bar styles */
+.file-upload, .search-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centers items horizontally */
+  gap: 10px; /* Adds space between items */
+}
+
+/* Form inputs and buttons */
+input[type="file"],
+input[type="text"] {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #222020;
+  color: #ffffff;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4a90e2; /* Light blue for the button */
+  color: #ffffff; /* Button text color */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #357abd; /* Darker blue for hover state */
+}
+
+/* Data container styles */
+.data-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Adds 10px spacing between cards */
+  margin-top: 20px; /* Adds margin to separate from top bar */
+}
+
+/* Animation for DataCard */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applies animation to the card */
+.card {
+  background-color: #3F3E3E;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 5px; /* Spacing between cards */
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+  color: #ffffff;
+  animation: fadeInUp 0.5s ease-out; /* Applies fadeInUp animation */
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+.card p strong {
+  color: #f0f0f0;
+}
+
+/* DataCard item styles */
+.data-card-item {
+  background-color: #4a4a4a; /* Background color for card items */
+  border-radius: 5px; /* Rounded corners for items */
+  padding: 10px; /* Internal spacing for items */
+  margin-bottom: 5px; /* Space between items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for item depth */
+  color: #ffffff; /* Text color for items */
+  display: flex; /* Flexible layout */
+  flex-direction: row; /* Horizontal layout for label and value */
+  justify-content: space-between; /* Space between label and value */
+  align-items: center; /* Center content vertically */
+  animation: fadeInUp 0.5s ease-out; /* Applies fadeInUp animation */
+}
+
+.data-card-item strong {
+  color: #e0e0e0; /* Label text color */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .App {
+    width: 90%;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    gap: 10px; /* Adjusts gap between elements */
+  }
+
+  .file-upload, .search-bar {
+    flex-direction: column; /* Aligns items vertically on mobile */
+    gap: 10px; /* Space between elements */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .file-upload input[type="file"], .search-bar input[type="text"] {
+    width: 100%; /* Full width for inputs on mobile */
+  }
+
+  .file-upload button, .search-bar button {
+    width: 100%; /* Full width for buttons on mobile */
+  }
+
+  .data-container {
+    gap: 10px; /* Increases space between cards on mobile */
+  }
+
+  .card {
+    width: 100%; /* Makes card take up full width on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    width: 95%; /* Ensures the app takes almost full width on very small screens */
+  }
+
+  .data-card-item {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Reduces font size for the header */
+  }
+
+  .file-upload, .search-bar {
+    flex-direction: column;
+    gap: 5px; /* Adjusts gap between elements */
+  }
+
+  .file-upload input[type="file"], .search-bar input[type="text"] {
+    width: 100%; /* Full width for inputs on mobile */
+  }
+
+  .file-upload button, .search-bar button {
+    width: 100%; /* Full width for buttons on mobile */
+  }
+}
